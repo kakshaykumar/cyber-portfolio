@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Mail,
@@ -13,360 +12,411 @@ import {
   Monitor,
   GraduationCap,
   Briefcase,
-  ArrowUpRight,
-  ChevronDown,
-  ChevronUp,
 } from "lucide-react";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0 },
-};
 
 const experiences = [
   {
     icon: GraduationCap,
     role: "Graduate Teaching Assistant",
     org: "George Mason University",
-    capabilities: [
-      "Information Security Labs",
-      "Malware Analysis Fundamentals",
-      "Security Mentorship",
-      "Technical Communication",
+    details: [
+      "Supporting information security coursework through hands-on lab guidance, malware analysis fundamentals, phishing awareness, and vulnerability assessment concepts.",
+      "Strengthened technical communication by mentoring students through practical cybersecurity problem-solving.",
     ],
-    details:
-      "Guiding students through practical cybersecurity labs, malware analysis fundamentals, phishing awareness, vulnerability assessment concepts, and structured problem-solving.",
   },
   {
     icon: Briefcase,
     role: "Cybersecurity SME Intern",
     org: "Comtech LLC (MSSP)",
-    capabilities: [
-      "Threat Assessment",
-      "Managed Security Services",
-      "Security Whitepapers",
-      "Risk Methodologies",
+    details: [
+      "Contributed to cybersecurity service design, threat assessment activities, technical whitepapers, and managed security service planning.",
+      "Worked across healthcare and public-sector security engagement workflows involving structured risk evaluation methodologies.",
     ],
-    details:
-      "Contributed to cybersecurity service design, technical whitepapers, threat assessment workflows, and structured managed security engagement planning.",
   },
   {
     icon: Server,
     role: "Network Security TAC Engineer (L1 → L2)",
     org: "Movate / HPE-Aruba",
-    capabilities: [
-      "Packet Analysis",
-      "Infrastructure Security",
-      "Access Control",
-      "Incident Escalation",
+    details: [
+      "Worked in enterprise infrastructure environments supporting security-focused troubleshooting, packet analysis, access control hardening, and vulnerability visibility workflows.",
+      "Built strong operational foundations in infrastructure security, production incident escalation, and enterprise network defense concepts.",
     ],
-    details:
-      "Worked in enterprise infrastructure environments supporting security-focused troubleshooting, packet analysis, access control hardening, vulnerability visibility, and production incident workflows.",
   },
 ];
 
-const projects = [
+const featuredProjects = [
   {
     icon: Cloud,
     title: "Cloud Security Assessment",
     subtitle: "Azure vs GCP Default IaaS Security Review",
-    short:
-      "Comparative hands-on cloud security posture assessment.",
-    github: "https://github.com/kakshaykumar/cloud-security-iaas",
-    details: {
-      objective:
-        "Evaluate default security posture differences across Azure and Google Cloud IaaS environments.",
-      scope: [
-        "IAM exposure review",
-        "Cloud logging visibility",
-        "Encryption controls",
-        "Storage configuration",
-        "Hardening opportunities",
-      ],
-      takeaway:
-        "Default deployments still require deliberate hardening for secure enterprise adoption.",
-    },
-    tags: ["Azure", "GCP", "IAM", "Cloud Security"],
+    description:
+      "Comparative hands-on security assessment evaluating default cloud security posture across IAM exposure, logging visibility, encryption controls, storage configuration, and hardening opportunities.",
+    tags: ["Azure", "GCP", "IAM", "Cloud Logging", "CIS", "NIST"],
   },
   {
     icon: Network,
     title: "Network Security Labs",
     subtitle: "Traffic Analysis & Vulnerability Assessment",
-    short:
-      "Hands-on infrastructure security and packet analysis exercises.",
-    github: "https://github.com/kakshaykumar/network-security-labs",
-    details: {
-      objective:
-        "Explore practical network defense workflows using real protocol and vulnerability analysis.",
-      scope: [
-        "Wireshark packet analysis",
-        "Protocol inspection",
-        "Nessus vulnerability scanning",
-        "VPN/NAT behavioral analysis",
-      ],
-      takeaway:
-        "Operational visibility is foundational to effective infrastructure defense.",
-    },
-    tags: ["Wireshark", "Nessus", "VPN", "Traffic Analysis"],
+    description:
+      "Hands-on protocol inspection, Wireshark packet analysis, Nessus-based vulnerability assessment, and NAT/VPN behavior exploration through realistic infrastructure security lab exercises.",
+    tags: ["Wireshark", "Nessus", "TCP/IP", "VPN", "Network Security"],
   },
   {
     icon: Shield,
     title: "Applied Security Labs",
-    subtitle: "SQL Injection & Cryptography",
-    short:
-      "Practical offensive security engineering labs.",
-    github: "https://github.com/kakshaykumar/applied-security-labs",
-    details: {
-      objective:
-        "Apply offensive security concepts through exploitation and cryptographic implementation.",
-      scope: [
-        "SQL injection workflows",
-        "Web exploitation fundamentals",
-        "RSA implementation",
-        "Security artifact generation",
-      ],
-      takeaway:
-        "Understanding offensive workflows improves defensive engineering maturity.",
-    },
-    tags: ["SQLi", "Burp Suite", "RSA", "OpenSSL"],
+    subtitle: "SQL Injection & RSA Cryptography",
+    description:
+      "Practical security engineering exercises covering SQL injection exploitation workflows and RSA asymmetric cryptography implementation using real generated artifacts and annotated analysis.",
+    tags: ["SQL Injection", "Burp Suite", "OpenSSL", "Cryptography"],
   },
   {
     icon: Lock,
     title: "Malware Progression & Detection",
     subtitle: "Threat Evolution Research",
-    short:
-      "Research-driven malware evolution analysis.",
-    github: "https://github.com/kakshaykumar/malware-progression-detection",
-    details: {
-      objective:
-        "Study malware evolution and defensive detection approaches.",
-      scope: [
-        "Historical threat progression",
-        "Detection methodologies",
-        "Behavioral analysis concepts",
-      ],
-      takeaway:
-        "Detection engineering evolves alongside adversary sophistication.",
-    },
-    tags: ["Malware", "Threat Research"],
+    description:
+      "Security research exploring malware evolution from early threats to advanced campaigns, mapping detection approaches across signature, behavioral, and hybrid analysis strategies.",
+    tags: ["Malware Analysis", "Threat Research", "Detection Engineering"],
   },
   {
     icon: Monitor,
     title: "Identity Theft Research",
     subtitle: "Case Studies & Prevention Controls",
-    short:
-      "Identity-focused security case study analysis.",
-    github: "https://github.com/kakshaykumar/identity-theft-research",
-    details: {
-      objective:
-        "Analyze identity theft attack vectors and prevention strategies.",
-      scope: [
-        "Case studies",
-        "Business impact",
-        "Identity controls",
-        "Preventive recommendations",
-      ],
-      takeaway:
-        "Identity remains a critical enterprise attack surface.",
-    },
-    tags: ["IAM", "MFA", "Identity Security"],
+    description:
+      "Research-focused analysis of identity theft attack vectors, business impact, and practical security control recommendations using real-world incident case studies.",
+    tags: ["IAM", "MFA", "Identity Security", "Risk Analysis"],
   },
+];
+
+const skills = {
+  "Security Operations": [
+    "Splunk",
+    "SIEM",
+    "Threat Analysis",
+    "Vulnerability Management",
+    "Incident Visibility",
+  ],
+  "Cloud Security": [
+    "Azure",
+    "GCP",
+    "IAM",
+    "Cloud Logging",
+    "Security Posture Assessment",
+  ],
+  "Infrastructure Security": [
+    "Network Security",
+    "802.1X",
+    "RADIUS",
+    "TACACS+",
+    "VPN",
+    "Access Control",
+  ],
+  "Threat Analysis & Security Tooling": [
+    "Wireshark",
+    "Nessus",
+    "Qualys",
+    "Nmap",
+    "Burp Suite",
+  ],
+  "Systems & Automation": [
+    "Linux",
+    "Windows",
+    "Python",
+    "Bash",
+    "Git",
+  ],
+};
+
+const certifications = [
+  "ISC2 Certified in Cybersecurity (CC)",
+  "Microsoft Azure Fundamentals (AZ-900)",
+  "Fortinet FCA",
+  "Fortinet FCF",
+  "Splunk Core User Training",
 ];
 
 const articles = [
   {
     title: "OverTheWire Natas: Building a CTF Mindset",
-    link: "https://medium.com/@akshaykumar_90336/overthewire-natas-building-a-ctf-mindset-ad1a823ba614",
+    desc: "A practical exploration of web exploitation thinking through the Natas challenge series.",
   },
   {
-    title: "Natas Walkthrough Series",
-    link: "https://medium.com/@akshaykumar_90336/overthewire-natas-level-1-level-2-feff2d0663ba",
+    title: "OverTheWire Natas Walkthrough Series",
+    desc: "Step-by-step challenge analysis documenting offensive security learning progression.",
   },
   {
     title: "It Wasn’t Maintenance — It Was a Ransom Note",
-    link: "https://medium.com/@akshaykumar_90336/it-wasnt-maintenance-it-was-a-ransom-note-ced2a7f1962c",
+    desc: "A security-focused narrative exploring ransomware impact and operational implications.",
   },
 ];
 
+function Navbar() {
+  return (
+    <nav className="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/80 backdrop-blur">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+        <h1 className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-300">
+          Akshaykumar Kathirvelu
+        </h1>
+
+        <div className="hidden gap-8 text-sm text-slate-400 md:flex">
+          <a href="#experience" className="hover:text-white transition">
+            Experience
+          </a>
+          <a href="#projects" className="hover:text-white transition">
+            Projects
+          </a>
+          <a href="#skills" className="hover:text-white transition">
+            Skills
+          </a>
+          <a href="#writing" className="hover:text-white transition">
+            Writing
+          </a>
+          <a href="#contact" className="hover:text-white transition">
+            Contact
+          </a>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+function SocialButton({
+  href,
+  label,
+}: {
+  href: string;
+  label: string;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="rounded-xl border border-slate-700 px-5 py-3 text-sm font-medium text-slate-200 transition hover:border-sky-500 hover:bg-slate-900"
+    >
+      {label}
+    </a>
+  );
+}
+
 function Tag({ label }: { label: string }) {
   return (
-    <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-300">
+    <span className="rounded-full border border-slate-700 px-3 py-1 text-xs text-slate-300">
       {label}
     </span>
   );
 }
 
-function GlassCard({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl shadow-2xl transition hover:-translate-y-2 hover:border-sky-400/40">
-      {children}
-    </div>
-  );
-}
-
-function ProjectCard({ project }: { project: (typeof projects)[0] }) {
-  const [open, setOpen] = useState(false);
-  const Icon = project.icon;
-
-  return (
-    <GlassCard>
-      <Icon className="mb-4 text-sky-400" size={28} />
-
-      <h3 className="text-2xl font-semibold">{project.title}</h3>
-      <p className="mt-2 text-sky-400">{project.subtitle}</p>
-      <p className="mt-4 text-slate-300">{project.short}</p>
-
-      <div className="mt-5 flex flex-wrap gap-2">
-        {project.tags.map((tag) => (
-          <Tag key={tag} label={tag} />
-        ))}
-      </div>
-
-      <button
-        onClick={() => setOpen(!open)}
-        className="mt-6 flex items-center gap-2 text-sky-400 hover:text-sky-300"
-      >
-        {open ? "Hide Technical Details" : "View Technical Details"}
-        {open ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-      </button>
-
-      {open && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          className="mt-6 border-t border-white/10 pt-6"
-        >
-          <p className="text-slate-300">
-            <strong>Objective:</strong> {project.details.objective}
-          </p>
-
-          <div className="mt-5">
-            <p className="font-semibold text-white">Scope</p>
-            <ul className="mt-3 space-y-2 text-slate-300">
-              {project.details.scope.map((item) => (
-                <li key={item}>• {item}</li>
-              ))}
-            </ul>
-          </div>
-
-          <p className="mt-5 text-slate-300">
-            <strong>Key Takeaway:</strong> {project.details.takeaway}
-          </p>
-
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 text-sky-400 hover:text-sky-300"
-          >
-            Implementation Reference <ArrowUpRight size={16} />
-          </a>
-        </motion.div>
-      )}
-    </GlassCard>
-  );
-}
-
 export default function Home() {
   return (
-    <div className="min-h-screen bg-slate-950 text-white overflow-x-hidden">
-      <div className="fixed inset-0 -z-10">
-        <div className="absolute left-1/4 top-24 h-96 w-96 rounded-full bg-sky-500/10 blur-3xl" />
-        <div className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-            backgroundSize: "50px 50px",
-          }}
-        />
-      </div>
+    <div className="min-h-screen bg-slate-950 text-white">
+      <Navbar />
 
       <main className="mx-auto max-w-7xl px-6">
-        <section className="flex min-h-[90vh] flex-col justify-center py-20">
+        {/* HERO */}
+        <section className="flex min-h-[85vh] flex-col justify-center py-20">
           <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeUp}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <p className="mb-5 text-sm uppercase tracking-[0.35em] text-sky-400">
+            <p className="mb-4 text-sm uppercase tracking-[0.35em] text-sky-400">
               Security Engineer
             </p>
 
-            <h1 className="text-5xl font-bold md:text-7xl">
-              Akshaykumar{" "}
-              <span className="bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">
-                Kathirvelu
-              </span>
+            <h1 className="max-w-5xl text-5xl font-bold leading-tight md:text-7xl">
+              Akshaykumar Kathirvelu
             </h1>
 
-            <p className="mt-8 max-w-4xl text-lg leading-8 text-slate-300">
-              Security engineer with enterprise infrastructure experience, MSSP exposure, and hands-on engineering across cloud security, operations, infrastructure defense, and applied security labs.
+            <p className="mt-6 max-w-4xl text-lg leading-8 text-slate-300 md:text-xl">
+              Security professional with enterprise infrastructure security
+              experience, MSSP cybersecurity exposure, and hands-on engineering
+              work spanning cloud security, security operations, infrastructure
+              defense, vulnerability assessment, and applied security labs.
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
-              <Tag label="3 Years Enterprise Infrastructure" />
-              <Tag label="MSSP Security Experience" />
-              <Tag label="Graduate Teaching Assistant" />
-              <Tag label="MS Cybersecurity" />
+              <SocialButton
+                href="https://www.linkedin.com/in/YOUR-LINKEDIN"
+                label="LinkedIn"
+              />
+              <SocialButton
+                href="mailto:kakshaykumark@gmail.com"
+                label="Email"
+              />
+              <SocialButton
+                href="https://github.com/kakshaykumar"
+                label="GitHub"
+              />
+              <SocialButton
+                href="https://medium.com/@akshaykumar_90336"
+                label="Medium"
+              />
             </div>
           </motion.div>
         </section>
 
+        {/* EXPERIENCE */}
         <section id="experience" className="py-20">
-          <h2 className="mb-10 text-4xl font-bold">Experience</h2>
+          <div className="mb-12">
+            <p className="text-sm uppercase tracking-[0.35em] text-sky-400">
+              Experience
+            </p>
+            <h2 className="mt-4 text-4xl font-bold">
+              Operational Security Experience
+            </h2>
+          </div>
+
           <div className="grid gap-6 md:grid-cols-3">
             {experiences.map((exp) => {
               const Icon = exp.icon;
+
               return (
-                <GlassCard key={exp.role}>
+                <div
+                  key={exp.role}
+                  className="rounded-2xl border border-slate-800 bg-slate-900 p-6"
+                >
                   <Icon className="mb-4 text-sky-400" size={28} />
                   <h3 className="text-xl font-semibold">{exp.role}</h3>
                   <p className="mt-2 text-sky-400">{exp.org}</p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {exp.capabilities.map((cap) => (
-                      <Tag key={cap} label={cap} />
+
+                  <div className="mt-4 space-y-4 text-slate-300">
+                    {exp.details.map((detail) => (
+                      <p key={detail} className="leading-7">
+                        {detail}
+                      </p>
                     ))}
                   </div>
-                  <p className="mt-5 text-slate-300">{exp.details}</p>
-                </GlassCard>
+                </div>
               );
             })}
           </div>
         </section>
 
+        {/* PROJECTS */}
         <section id="projects" className="py-20">
-          <h2 className="mb-10 text-4xl font-bold">Projects</h2>
+          <div className="mb-12">
+            <p className="text-sm uppercase tracking-[0.35em] text-sky-400">
+              Featured Projects
+            </p>
+            <h2 className="mt-4 text-4xl font-bold">
+              Hands-On Security Engineering Work
+            </h2>
+          </div>
+
           <div className="grid gap-6 md:grid-cols-2">
-            {projects.map((project) => (
-              <ProjectCard key={project.title} project={project} />
+            {featuredProjects.map((project) => {
+              const Icon = project.icon;
+
+              return (
+                <div
+                  key={project.title}
+                  className="rounded-2xl border border-slate-800 bg-slate-900 p-6"
+                >
+                  <Icon className="mb-4 text-sky-400" size={28} />
+                  <h3 className="text-2xl font-semibold">{project.title}</h3>
+                  <p className="mt-2 text-sky-400">{project.subtitle}</p>
+                  <p className="mt-4 leading-7 text-slate-300">
+                    {project.description}
+                  </p>
+
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <Tag key={tag} label={tag} />
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* SKILLS */}
+        <section id="skills" className="py-20">
+          <div className="mb-12">
+            <p className="text-sm uppercase tracking-[0.35em] text-sky-400">
+              Skills
+            </p>
+            <h2 className="mt-4 text-4xl font-bold">
+              Security Engineering Capabilities
+            </h2>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            {Object.entries(skills).map(([category, items]) => (
+              <div
+                key={category}
+                className="rounded-2xl border border-slate-800 bg-slate-900 p-6"
+              >
+                <h3 className="text-xl font-semibold">{category}</h3>
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {items.map((item) => (
+                    <Tag key={item} label={item} />
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </section>
 
+        {/* CERTIFICATIONS */}
+        <section className="py-20">
+          <div className="mb-12">
+            <p className="text-sm uppercase tracking-[0.35em] text-sky-400">
+              Certifications
+            </p>
+            <h2 className="mt-4 text-4xl font-bold">
+              Professional Validation
+            </h2>
+          </div>
+
+          <div className="flex flex-wrap gap-3">
+            {certifications.map((cert) => (
+              <Tag key={cert} label={cert} />
+            ))}
+          </div>
+        </section>
+
+        {/* WRITING */}
         <section id="writing" className="py-20">
-          <h2 className="mb-10 text-4xl font-bold">Security Writing</h2>
+          <div className="mb-12">
+            <p className="text-sm uppercase tracking-[0.35em] text-sky-400">
+              Security Writing
+            </p>
+            <h2 className="mt-4 text-4xl font-bold">
+              Technical Learning & Writeups
+            </h2>
+          </div>
+
           <div className="grid gap-6 md:grid-cols-3">
             {articles.map((article) => (
-              <GlassCard key={article.title}>
-                <BookOpen className="mb-4 text-sky-400" />
+              <div
+                key={article.title}
+                className="rounded-2xl border border-slate-800 bg-slate-900 p-6"
+              >
+                <BookOpen className="mb-4 text-sky-400" size={24} />
                 <h3 className="text-xl font-semibold">{article.title}</h3>
-                <a
-                  href={article.link}
-                  target="_blank"
-                  className="mt-5 inline-flex items-center gap-2 text-sky-400"
-                >
-                  Read Article <ArrowUpRight size={16} />
-                </a>
-              </GlassCard>
+                <p className="mt-4 leading-7 text-slate-300">{article.desc}</p>
+              </div>
             ))}
           </div>
         </section>
 
-        <section className="py-24 text-center">
-          <Mail className="mx-auto mb-5 text-sky-400" />
-          <h2 className="text-4xl font-bold">Let’s Connect</h2>
-          <p className="mx-auto mt-6 max-w-2xl text-slate-300">
-            Open to meaningful conversations around security engineering, infrastructure defense, and cloud security.
+        {/* CONTACT */}
+        <section
+          id="contact"
+          className="border-t border-slate-800 py-20 text-center"
+        >
+          <Mail className="mx-auto mb-5 text-sky-400" size={28} />
+
+          <h2 className="text-3xl font-bold">
+            Let’s Connect
+          </h2>
+
+          <p className="mx-auto mt-4 max-w-2xl leading-7 text-slate-300">
+            Reach out through LinkedIn, GitHub, Medium, or direct email for
+            professional conversations around security engineering, cloud
+            security, infrastructure defense, and security operations.
           </p>
         </section>
       </main>
