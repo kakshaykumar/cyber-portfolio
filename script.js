@@ -39,10 +39,10 @@ const typingTarget = document.getElementById("typing-role");
 
 if (typingTarget) {
   const roles = [
-    "Security Engineer",
-    "SOC / SecOps Analyst",
-    "Cloud Security Engineer",
+    "SOC Analyst",
+    "Blue Team Operator",
     "Network Security Professional",
+    "Cloud Security Engineer",
   ];
 
   let roleIndex = 0;
