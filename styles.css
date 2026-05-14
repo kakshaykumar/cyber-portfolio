@@ -207,9 +207,9 @@ p {
 h1 {
   max-width: 650px;
   margin-bottom: 0.85rem;
-  font-size: clamp(2.25rem, 4.7vw, 3.85rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  font-size: clamp(1.2rem, 2.1vw, 1.85rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
 h2 {
@@ -225,6 +225,37 @@ h3 {
   line-height: 1.25;
 }
 
+
+/* Terminal role/location/quote lines */
+.term-roles {
+  margin-top: 0.55rem;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.term-hl {
+  color: var(--accent-2);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.term-hl-dim {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.term-loc {
+  color: var(--dim);
+  font-size: 0.72rem;
+  margin-bottom: 0;
+}
+
+.term-quote {
+  color: var(--accent-2);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  font-size: 0.78rem;
+}
 /* ── TYPING ANIMATION ──────────────────────────────────────── */
 
 .typing-line {
@@ -233,11 +264,6 @@ h3 {
   font-size: clamp(1rem, 1.8vw, 1.2rem);
   color: var(--accent-2);
   font-weight: 700;
-}
-
-.t-arrow {
-  margin-right: 0.4rem;
-  opacity: 0.7;
 }
 
 .t-cursor {
@@ -323,7 +349,7 @@ h3 {
 
 .hero-panel {
   position: relative;
-  min-height: 420px;
+  min-height: 360px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
@@ -1127,8 +1153,8 @@ h3 {
   }
 
   h1 {
-    font-size: clamp(2.1rem, 10.5vw, 3.05rem);
-    line-height: 1.06;
+    font-size: clamp(1.1rem, 5.5vw, 1.65rem);
+    line-height: 1.18;
   }
 
   h2 {
