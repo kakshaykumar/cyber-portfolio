@@ -80,31 +80,4 @@ if (typingTarget) {
   setTimeout(type, 800);
 }
 
-// ── PROGRESS BAR ANIMATION ───────────────────────────────────
-
-const progCards = document.querySelectorAll(".skill-prog-card");
-
-if (progCards.length) {
-  const progObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // Stagger each bar inside the card
-          entry.target.querySelectorAll(".prog-bar").forEach((bar, i) => {
-            const w = bar.getAttribute("data-w");
-            if (w) {
-              setTimeout(() => {
-                bar.style.setProperty("--target-w", w + "%");
-                bar.classList.add("animated");
-              }, i * 120);
-            }
-          });
-          progObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.3 }
-  );
-
-  progCards.forEach((card) => progObserver.observe(card));
-}
+// Skills use chip layout — no animation needed
