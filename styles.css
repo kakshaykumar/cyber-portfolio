@@ -1119,12 +1119,7 @@ h3 {
 
 /* ── CONTACT REDESIGN ──────────────────────────────────────── */
 
-.contact-new {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  max-width: 680px;
-}
+/* contact-new now defined below */
 
 .contact-text p {
   color: var(--muted);
@@ -1208,6 +1203,80 @@ h3 {
   border-radius: 50%;
   background: var(--accent-2);
   flex-shrink: 0;
+}
+
+
+/* ── CERT BADGE IMAGE ──────────────────────────────────────── */
+
+.cert-badge-wrap {
+  width: 88px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.55rem;
+}
+
+.cert-badge-img {
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.cert-coursework {
+  color: var(--dim);
+  font-size: 0.75em;
+  font-weight: 600;
+}
+
+/* ── CONTACT SIDE-BY-SIDE ──────────────────────────────────── */
+
+.contact-new {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.contact-left-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-right-col {
+  flex-shrink: 0;
+}
+
+/* ── MEDIUM "M" ICON ───────────────────────────────────────── */
+
+.icon-letter-m {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: currentColor;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* ── THM/EXTERNAL ICON IMAGES ──────────────────────────────── */
+
+.contact-icon-img {
+  filter: brightness(0.75) saturate(0.5);
+  transition: filter 180ms ease;
+}
+
+.contact-icon-btn:hover .contact-icon-img {
+  filter: brightness(1) saturate(1) hue-rotate(140deg);
+}
+
+/* ── RESPONSIVE CONTACT ────────────────────────────────────── */
+
+@media (max-width: 720px) {
+  .contact-new {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ── FOOTER ────────────────────────────────────────────────── */
